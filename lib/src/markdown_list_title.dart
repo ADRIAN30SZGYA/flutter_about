@@ -31,6 +31,8 @@ class MarkdownPageListTile extends StatelessWidget {
   const MarkdownPageListTile({
     Key? key,
     this.icon,
+    this.tileColor,
+    this.shape,
     required this.title,
     this.scaffoldBuilder,
     this.applicationName,
@@ -62,6 +64,10 @@ class MarkdownPageListTile extends StatelessWidget {
   /// This is not necessarily the same as the image shown in the dialog box
   /// itself; which is controlled by the [applicationIcon] property.
   final Widget? icon;
+
+  final Color? tileColor;
+  
+  final ShapeBorder? shape;
 
   /// The label to show on this drawer item.
   ///
@@ -171,6 +177,8 @@ class MarkdownPageListTile extends StatelessWidget {
                 ? Icons.chevron_right
                 : Icons.chevron_left,
           ),
+      tileColor: tileColor,
+      shape: shape,
       onTap: () {
         showMarkdownPage(
           applicationIcon: applicationIcon,

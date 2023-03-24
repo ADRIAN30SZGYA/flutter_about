@@ -43,6 +43,8 @@ class LicensesPageListTile extends StatelessWidget {
   const LicensesPageListTile({
     Key? key,
     this.icon,
+    this.tileColor,
+    this.shape,
     this.title,
     this.trailing,
     this.scaffoldBuilder,
@@ -56,6 +58,10 @@ class LicensesPageListTile extends StatelessWidget {
   /// This is not necessarily the same as the image shown in the dialog box
   /// itself; which is controlled by the [applicationIcon] property.
   final Widget? icon;
+
+  final Color? tileColor;
+  
+  final ShapeBorder? shape;
 
   /// The label to show on this drawer item.
   ///
@@ -83,6 +89,8 @@ class LicensesPageListTile extends StatelessWidget {
             : MaterialLocalizations.of(context).licensesPageTitle);
     return ListTile(
       leading: icon,
+      tileColor: tileColor,
+      shape: shape,
       title: localTitle,
       trailing: trailing ??
           Icon(
