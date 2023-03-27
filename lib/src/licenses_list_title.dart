@@ -49,6 +49,7 @@ class LicensesPageListTile extends StatelessWidget {
     this.trailing,
     this.scaffoldBuilder,
     this.values,
+    this.padding,
   }) : super(key: key);
 
   /// The icon to show for this drawer item.
@@ -62,6 +63,8 @@ class LicensesPageListTile extends StatelessWidget {
   final Color? tileColor;
   
   final ShapeBorder? shape;
+  
+  final EdgeInsetsGeometry? padding;
 
   /// The label to show on this drawer item.
   ///
@@ -106,6 +109,7 @@ class LicensesPageListTile extends StatelessWidget {
           values: values,
           tileColor: tileColor,
           shape: shape,
+          padding: padding,
         );
       },
     );

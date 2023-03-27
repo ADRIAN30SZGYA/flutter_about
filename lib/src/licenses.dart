@@ -44,6 +44,7 @@ void showLicensePage({
   Map<String, String>? values,
   Color? tileColor,
   ShapeBorder? shape,
+  EdgeInsetsGeometry? padding,
 }) {
   if (isCupertino(context)) {
     Navigator.push(
@@ -55,6 +56,7 @@ void showLicensePage({
                   values: values,
                   tileColor: tileColor,
                   shape: shape,
+                  padding: padding,
                 )));
   } else {
     Navigator.push(
@@ -66,6 +68,7 @@ void showLicensePage({
                   values: values,
                   tileColor: tileColor,
                   shape: shape,
+                  padding: padding,
                 )));
   }
 }
@@ -95,6 +98,7 @@ class LicenseListPage extends StatefulWidget {
     this.values,
     this.tileColor,
     this.shape,
+    this.padding,
   }) : super(key: key);
 
   /// The page title
@@ -103,6 +107,8 @@ class LicenseListPage extends StatefulWidget {
   final Color? tileColor;
   
   final ShapeBorder? shape;
+  
+  final EdgeInsetsGeometry? padding;
 
   /// The builder for the Scaffold around the content.
   ///
@@ -181,50 +187,53 @@ class LicenseListPageState extends State<LicenseListPage> {
       final packageName = package;
 
       licenseWidgets.add(
-        ListTile(
-          title: Text(packageName),
-          subtitle: Text(excerpt),
-          tileColor: widget.tileColor,
-          shape: widget.shape,
-          trailing: Icon(
-            Directionality.of(context) == TextDirection.ltr
-                ? Icons.chevron_right
-                : Icons.chevron_left,
-          ),
-          onTap: () {
-            Widget builder(BuildContext context) {
-              final paragraphs = <LicenseParagraph>[];
+        Padding(
+          padding: widget.padding,
+          child: ListTile(
+            title: Text(packageName),
+            subtitle: Text(excerpt),
+            tileColor: widget.tileColor,
+            shape: widget.shape,
+            trailing: Icon(
+              Directionality.of(context) == TextDirection.ltr
+                  ? Icons.chevron_right
+                  : Icons.chevron_left,
+            ),
+            onTap: () {
+              Widget builder(BuildContext context) {
+                final paragraphs = <LicenseParagraph>[];
 
-              for (final license in licenses) {
-                if (license.packages.contains(package)) {
-                  paragraphs.addAll(license.paragraphs);
-                  paragraphs.add(LicenseParagraphSeparator());
+                for (final license in licenses) {
+                  if (license.packages.contains(package)) {
+                    paragraphs.addAll(license.paragraphs);
+                    paragraphs.add(LicenseParagraphSeparator());
+                  }
                 }
+
+                if (paragraphs.isNotEmpty) {
+                  paragraphs.removeLast();
+                }
+
+                return LicenseDetail(
+                    package: packageName,
+                    paragraphs: paragraphs,
+                    scaffoldBuilder: widget.scaffoldBuilder);
               }
 
-              if (paragraphs.isNotEmpty) {
-                paragraphs.removeLast();
+              if (isCupertino(context)) {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute<void>(builder: builder),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(builder: builder),
+                );
               }
-
-              return LicenseDetail(
-                  package: packageName,
-                  paragraphs: paragraphs,
-                  scaffoldBuilder: widget.scaffoldBuilder);
-            }
-
-            if (isCupertino(context)) {
-              Navigator.push(
-                context,
-                CupertinoPageRoute<void>(builder: builder),
-              );
-            } else {
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(builder: builder),
-              );
-            }
-          },
-        ),
+            },
+          ),
+        )
       );
     }
 
