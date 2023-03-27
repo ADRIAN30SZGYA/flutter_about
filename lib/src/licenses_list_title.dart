@@ -104,6 +104,8 @@ class LicensesPageListTile extends StatelessWidget {
           title: localTitle,
           scaffoldBuilder: scaffoldBuilder,
           values: values,
+          tileColor: tileColor,
+          shape: shape,
         );
       },
     );

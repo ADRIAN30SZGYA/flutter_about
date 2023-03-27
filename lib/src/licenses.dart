@@ -42,6 +42,8 @@ void showLicensePage({
   Widget? title,
   ScaffoldBuilder? scaffoldBuilder,
   Map<String, String>? values,
+  Color? tileColor;
+  ShapeBorder? shape;
 }) {
   if (isCupertino(context)) {
     Navigator.push(
@@ -51,6 +53,8 @@ void showLicensePage({
                   title: title,
                   scaffoldBuilder: scaffoldBuilder,
                   values: values,
+                  tileColor: tileColor,
+                  shape: shape,
                 )));
   } else {
     Navigator.push(
@@ -60,6 +64,8 @@ void showLicensePage({
                   title: title,
                   scaffoldBuilder: scaffoldBuilder,
                   values: values,
+                  tileColor: tileColor,
+                  shape: shape,
                 )));
   }
 }
@@ -87,10 +93,16 @@ class LicenseListPage extends StatefulWidget {
     this.title,
     this.scaffoldBuilder,
     this.values,
+    this.tileColor,
+    this.shape,
   }) : super(key: key);
 
   /// The page title
   final Widget? title;
+
+  final Color? tileColor;
+  
+  final ShapeBorder? shape;
 
   /// The builder for the Scaffold around the content.
   ///
@@ -172,6 +184,8 @@ class LicenseListPageState extends State<LicenseListPage> {
         ListTile(
           title: Text(packageName),
           subtitle: Text(excerpt),
+          tileColor: widget.tileColor,
+          shape: widget.shape,
           trailing: Icon(
             Directionality.of(context) == TextDirection.ltr
                 ? Icons.chevron_right
