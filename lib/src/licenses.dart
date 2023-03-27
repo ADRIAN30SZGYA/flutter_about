@@ -42,8 +42,8 @@ void showLicensePage({
   Widget? title,
   ScaffoldBuilder? scaffoldBuilder,
   Map<String, String>? values,
-  Color? tileColor;
-  ShapeBorder? shape;
+  Color? tileColor,
+  ShapeBorder? shape,
 }) {
   if (isCupertino(context)) {
     Navigator.push(
