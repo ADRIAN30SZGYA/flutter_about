@@ -98,7 +98,7 @@ class LicenseListPage extends StatefulWidget {
     this.values,
     this.tileColor,
     this.shape,
-    this.padding,
+    required this.padding,
   }) : super(key: key);
 
   /// The page title
@@ -108,7 +108,7 @@ class LicenseListPage extends StatefulWidget {
   
   final ShapeBorder? shape;
   
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry padding;
 
   /// The builder for the Scaffold around the content.
   ///

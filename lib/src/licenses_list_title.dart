@@ -49,7 +49,7 @@ class LicensesPageListTile extends StatelessWidget {
     this.trailing,
     this.scaffoldBuilder,
     this.values,
-    this.padding,
+    required this.padding,
   }) : super(key: key);
 
   /// The icon to show for this drawer item.
@@ -64,7 +64,7 @@ class LicensesPageListTile extends StatelessWidget {
   
   final ShapeBorder? shape;
   
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry padding;
 
   /// The label to show on this drawer item.
   ///
