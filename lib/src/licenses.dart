@@ -44,7 +44,7 @@ void showLicensePage({
   Map<String, String>? values,
   Color? tileColor,
   ShapeBorder? shape,
-  EdgeInsetsGeometry? padding,
+  EdgeInsetsGeometry padding,
 }) {
   if (isCupertino(context)) {
     Navigator.push(
